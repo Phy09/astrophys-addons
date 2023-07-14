@@ -2,7 +2,7 @@ from typing import Callable
 import numpy as np
 from scipy import integrate
 
-from .coordinates import Coordinates
+from ..coordinates import Coordinates
 
 class PSF:
     """
@@ -36,6 +36,8 @@ class PSF:
 
         return integral
 
+
+
 # GAUSSIAN FUNCTION
 def gaussian(x, sd: float, max: float):
     """
@@ -45,7 +47,6 @@ def gaussian(x, sd: float, max: float):
      - `max`: Maximum of gaussian curve at center
     """
     return (np.e**(-.5 * ((x)/sd)**2) * max)
-
 class GaussianPSF(PSF):
     """
     Point Spread function using the Gaussian equation.
@@ -64,12 +65,13 @@ class GaussianPSF(PSF):
     def function(self):
         return lambda r: moffat(r, self.alpha, self.beta)
 
+
+
 # MOFFAT FUNCTION
 # https://www.ias.ac.in/article/fulltext/joaa/009/01/0017-0024
 def moffat(x, alpha: float, beta: float):
     F_0 = (beta - 1) * np.pi * alpha**2
     return F_0 * (1 + ((x)/alpha)**2) ** (-beta)
-
 class MoffatPSF(PSF):
     """
     Point Spread function using the Moffat distribution.
