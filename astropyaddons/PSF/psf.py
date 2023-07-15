@@ -8,14 +8,13 @@ class PSF:
     """
     Point Spread Function. 
     Used to calculate the counts each pixel on a CCD would have.
+
+    Parameters:
+     - `function`: Callable function with one input argument,
+        that being the distance from the center of the PSF.
     """
 
     def __init__(self, function: Callable):
-        """
-        Parameters:
-         - `function`: Callable function with one input argument,
-            that being the distance from the center of the PSF.
-        """
         self.function: Callable = function
 
     def counts_pixel(self, center: Coordinates, pixel: Coordinates, pixel_size: int or float = 1):
@@ -42,22 +41,20 @@ class PSF:
 def gaussian(x, sd: float, max: float):
     """
     Returns the value of the gaussian function:
-     - `distance`: Distance to center of gaussian curve
+     - `distance`: Distance to mean of gaussian curve
      - `sd`: Standard Deviation of gaussian curve
-     - `max`: Maximum of gaussian curve at center
+     - `max`: Maximum of gaussian curve at mean
     """
     return (np.e**(-.5 * ((x)/sd)**2) * max)
 class GaussianPSF(PSF):
     """
     Point Spread function using the Gaussian equation.
+    Parameters:
+     - `sd`: Standard deviation of gaussian curve.
+     - `max`: Max value of gaussian curve at mean.
     """
 
     def __init__(self, sd: float, max: float):
-        """
-        Parameters:
-         - `sd`: Standard deviation of gaussian curve.
-         - `max`: Max value of gaussian curve at center.
-        """
         self.alpha: float = sd
         self.beta: float = max
     
@@ -75,13 +72,11 @@ def moffat(x, alpha: float, beta: float):
 class MoffatPSF(PSF):
     """
     Point Spread function using the Moffat distribution.
+    Parameters:
+     - `alpha`, `beta`: Alpha and beta of the standard Moffat distribution.
     """
 
     def __init__(self, alpha: float, beta: float):
-        """
-        Parameters:
-         - `alpha`, `beta`: Alpha and beta of the standard Moffat distribution.
-        """
         self.alpha: float = alpha
         self.beta: float = beta
      

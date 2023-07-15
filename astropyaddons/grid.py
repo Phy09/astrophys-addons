@@ -61,11 +61,10 @@ class DataGrid(Grid):
         if not isinstance(array, np.ndarray): raise TypeError("'array' must be a numpy array")
         if array.ndim != 2: raise ValueError("'array' must be 2-dimensional")
 
-        size_y, size_x = np.shape(array)
+        self.size_y, self.size_x = np.shape(array)
 
-        super().__init__(size_x, size_y)
-
-        for y, row in enumerate(array):
-            for x, counts in enumerate(row):
-                self.pixels[Coordinates(x, y)] += counts
-            
+        self.pixels: dict[Coordinates, Pixel] = {
+            Coordinates(x,y): Pixel(Coordinates(x,y), array[y,x])
+            for x in range(self.size_x)
+            for y in range(self.size_y)
+        }
