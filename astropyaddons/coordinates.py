@@ -1,6 +1,3 @@
-from dataclasses import dataclass
+from collections import namedtuple
 
-@dataclass(eq=True, frozen=True)
-class Coordinates:
-    x: float
-    y: float
+Coordinates: tuple = namedtuple('Coordinates', ['y', 'x'])
