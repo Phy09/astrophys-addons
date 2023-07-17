@@ -34,6 +34,6 @@ class Header:
         # SKY DETAILS
         self.airmass        = self.header.get('AIRMASS' , default=None)
         self.RA             = self.header.get('RA'      , default=None)
-        self.DEC            = self.hedaer.get('DEC'     , default=None)
+        self.DEC            = self.header.get('DEC'     , default=None)
 
         
