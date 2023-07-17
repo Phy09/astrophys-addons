@@ -9,7 +9,7 @@ class Header:
      - `header`: `astropy.io.fits.header.Header` object
     """
     def __init__(self, header: fits.header.Header):
-        self.header = header
+        self.header: fits.header.Header = header
         
         ### Extracting useful values.
 
@@ -20,8 +20,8 @@ class Header:
 
         # CCD DETAILS
         self.ccdtemp        = self.header.get('CCD-TEMP', default=None)
-        self.x_max          = self.header.get('NAXIS1'  , default=None)
-        self.y_max          = self.header.get('NAXIS2'  , default=None)
+        self.size_x         = self.header.get('NAXIS1'  , default=None)
+        self.size_y         = self.header.get('NAXIS2'  , default=None)
 
         # TELESCOPE DETAILS
         self.latitude       = self.header.get('LAT-OBS' , default=None)
