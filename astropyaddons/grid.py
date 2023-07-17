@@ -12,20 +12,20 @@ class Grid:
         if array.ndim != 2: raise ValueError("'array' must be 2-dimensional")
 
         #Transpose, so that the data is indexed as (x, y)
-        self.pixels: np.ndarray = array.T 
-        self.size_x, self.size_y = np.shape(self.pixels)
+        self.grid: np.ndarray = array.T 
+        self.size_x, self.size_y = np.shape(self.grid)
 
     @property
     def std(self) -> float:
-        return np.std(self.pixels)
+        return np.std(self.grid)
 
     @property
     def mean(self) -> float:
-        return np.mean(self.pixels)
+        return np.mean(self.grid)
 
     @property
     def median(self) -> float:
-        return np.median(self.pixels)
+        return np.median(self.grid)
 
 
 
