@@ -1,5 +1,4 @@
 from astropy.io import fits
-from astropy.time import Time
 
 class Header:
     """
