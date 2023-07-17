@@ -51,4 +51,4 @@ class FITSImage:
 
         plt.figure(figsize=(10,10))
         plt.title(self.__repr__())
-        plt.imshow(self.grid.grid, cmap='gray', origin='lower', vmin=lo, vmax=hi)
+        plt.imshow(self.grid.grid.T, cmap='gray', origin='lower', vmin=lo, vmax=hi)
