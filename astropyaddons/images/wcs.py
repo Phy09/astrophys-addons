@@ -16,7 +16,7 @@ class WCS:
     def __init__(self, header: Header):
 
         # Initialize WCS object
-        wcs = astropy.wcs.WCS(Header.header)
+        wcs = astropy.wcs.WCS(header.header)
 
         # First, detect if the image is plate-solved.
         if any(wcs.pixel_to_world_values(([0,1], [0,1]))[0] == np.array([1,2])):
