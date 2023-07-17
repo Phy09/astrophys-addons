@@ -32,3 +32,6 @@ class FITSImage:
 
         # Establish the WCS.
         self.wcs: WCS = WCS(self.header)
+
+    def __repr__(self):
+        return f'FITSImage of [{self.filter}, {self.date}, {self.time}, exptime {self.exptime}s]'
