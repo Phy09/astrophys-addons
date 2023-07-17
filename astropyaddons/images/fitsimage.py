@@ -1,6 +1,5 @@
 from astropy.io import fits
 from astropy.wcs import WCS
-from astropy.time import Time
 
 import numpy as np
 from itertools import product
@@ -32,16 +31,6 @@ class FITSImage:
             
             self.header: Header = Header(fits_image[image_to_load].header)
             self.grid: Grid = Grid(fits_image[image_to_load].data)
-
-
-        # EXTRACTING USEFUL HEADERS
-        self.JD = Time(self.header['DATE-OBS'], format='isot').jd
-        self.date, self.time = self.header['DATE-OBS'].split("T")
-        self.exptime = self.header['EXPTIME']
-        self.filter = self.header['FILTER']
-        self.size_x = self.header['NAXIS1']
-        self.size_y = self.header['NAXIS2']
-
 
         # SETTING WCS
         wcs = WCS(self.header)
