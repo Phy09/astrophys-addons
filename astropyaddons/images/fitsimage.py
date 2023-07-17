@@ -5,7 +5,8 @@ from astropy.time import Time
 import numpy as np
 from itertools import product
 
-from ..grid import DataGrid
+from ..grid import Grid
+from .header import Header
 
 class FITSImage:
     """
@@ -29,8 +30,8 @@ class FITSImage:
                             "has multiple images."\
                             "Only the first one will be loaded.")
             
-            self.header = fits_image[image_to_load].header
-            self.grid: DataGrid = DataGrid(fits_image[image_to_load].data)
+            self.header: Header = Header(fits_image[image_to_load].header)
+            self.grid: Grid = Grid(fits_image[image_to_load].data)
 
 
         # EXTRACTING USEFUL HEADERS
