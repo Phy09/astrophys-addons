@@ -1,11 +1,8 @@
 from astropy.io import fits
-from astropy.wcs import WCS
-
-import numpy as np
-from itertools import product
 
 from ..grid import Grid
 from .header import Header
+from .wcs import WCS
 
 class FITSImage:
     """
@@ -29,20 +26,9 @@ class FITSImage:
                             "has multiple images."\
                             "Only the first one will be loaded.")
             
+            # Extract useful information from the fits image.
             self.header: Header = Header(fits_image[image_to_load].header)
             self.grid: Grid = Grid(fits_image[image_to_load].data)
 
-        # SETTING WCS
-        wcs = WCS(self.header)
-        # Detect if the image is plate-solved. Returns True if it is.
-        if all(wcs.pixel_to_world_values([0,1], [0,1])[0] != np.array([1,2])):
-            self.wcs = wcs
-
-            # Create a "coordinate grid" that can be indexed via self.coords[y, x]
-            # For high level applications, access using self.coordinates(y, x)
-            x_pixel, y_pixel = np.array(list(product(np.arange(0, self.size_x), np.arange(0, self.size_y)))).T
-            self.coords: np.ndarray[np.ndarray[float, float]] = \
-                np.transpose(np.array(wcs.pixel_to_world_values(x_pixel, y_pixel)).T.reshape(self.size_x, self.size_y, 2),(1,0,2))
-        else:
-            self.wcs = None
-            self.coords = None
+        # Establish the WCS.
+        self.wcs: WCS = WCS(self.header)
