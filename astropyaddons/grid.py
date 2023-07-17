@@ -1,6 +1,3 @@
-from .coordinates import Coordinates
-from .pixel import Pixel
-
 import numpy as np
 
 class Grid:
@@ -14,8 +11,9 @@ class Grid:
         if not isinstance(array, np.ndarray): raise TypeError("'array' must be a numpy array")
         if array.ndim != 2: raise ValueError("'array' must be 2-dimensional")
 
-        self.pixels: np.ndarray = array.T
-        self.size_x, self.size_y= np.shape(self.pixels)
+        #Transpose, so that the data is indexed as (x, y)
+        self.pixels: np.ndarray = array.T 
+        self.size_x, self.size_y = np.shape(self.pixels)
 
     @property
     def std(self) -> float:
@@ -43,4 +41,5 @@ class EmptyGrid(Grid):
         if not isinstance(size_x, int): raise TypeError("size_x must be an integer")
         if not isinstance(size_y, int): raise TypeError("size_y must be an integer")
 
+        # y then x, as it will be transposed in `Grid.__init__()`
         super().__init__(self, np.empty((size_y, size_x)))
