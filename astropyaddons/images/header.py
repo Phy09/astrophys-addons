@@ -14,26 +14,26 @@ class Header:
         ### Extracting useful values.
 
         # GENERAL OBSERVATION DETAILS
-        self.exptime        = self.header.get('EXPTIME' , default=None)
-        self.datetime       = self.header.get('DATE-OBS', default=None)
-        self.JD             = self.header.get('JD'      , default=None)
+        self.exptime        = header.get('EXPTIME' , default=None)
+        self.datetime       = header.get('DATE-OBS', default=None)
+        self.JD             = header.get('JD'      , default=None)
 
         # CCD DETAILS
-        self.ccdtemp        = self.header.get('CCD-TEMP', default=None)
-        self.size_x         = self.header.get('NAXIS1'  , default=None)
-        self.size_y         = self.header.get('NAXIS2'  , default=None)
+        self.ccdtemp        = header.get('CCD-TEMP', default=None)
+        self.size_x         = header.get('NAXIS1'  , default=None)
+        self.size_y         = header.get('NAXIS2'  , default=None)
 
         # TELESCOPE DETAILS
-        self.latitude       = self.header.get('LAT-OBS' , default=None)
-        self.longitude      = self.header.get('LONG-OBS', default=None)
-        self.altitude       = self.header.get('ALT-OBS' , default=None)
-        self.filter         = self.header.get('FILTER'  , default=None)
-        self.focal_length   = self.header.get('FOCALLEN', default=None)
-        self.color_band     = self.header.get('CLRBAND' , default=None)
+        self.latitude       = header.get('LAT-OBS' , default=None)
+        self.longitude      = header.get('LONG-OBS', default=None)
+        self.altitude       = header.get('ALT-OBS' , default=None)
+        self.filter         = header.get('FILTER'  , default=None)
+        self.focal_length   = header.get('FOCALLEN', default=None)
+        self.color_band     = header.get('CLRBAND' , default=None)
 
         # SKY DETAILS
-        self.airmass        = self.header.get('AIRMASS' , default=None)
-        self.RA             = self.header.get('RA'      , default=None)
-        self.DEC            = self.header.get('DEC'     , default=None)
+        self.airmass        = header.get('AIRMASS' , default=None)
+        self.RA             = header.get('RA'      , default=None)
+        self.DEC            = header.get('DEC'     , default=None)
 
         
