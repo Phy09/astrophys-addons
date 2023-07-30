@@ -101,9 +101,6 @@ class FITSImage:
         Parameters:
           - `lo_phi`: standard deviations from median to assign to black
           - `hi_phi`: standard deviations from median to assign to white
-          - `rotated`: plot same data rotated 180 degrees (default=False)
-        
-        Returns: `None`
         """
         assert lo_phi < hi_phi, "lo_phi must be lower than hi_phi"
 
