@@ -27,8 +27,8 @@ class Header:
         self.latitude       = header.get('LAT-OBS' , default=None)
         self.longitude      = header.get('LONG-OBS', default=None)
         self.altitude       = header.get('ALT-OBS' , default=None)
-        self.filter         = header.get('FILTER'  , default=None)
         self.focal_length   = header.get('FOCALLEN', default=None)
+        self.filter         = header.get('FILTER'  , default=None)
         self.color_band     = header.get('CLRBAND' , default=None)
 
         # SKY DETAILS
