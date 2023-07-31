@@ -20,8 +20,8 @@ class Header:
 
         # CCD DETAILS
         self.ccdtemp        = header.get('CCD-TEMP', default=None)
-        self.size_x         = header.get('NAXIS1'  , default=None)
         self.size_y         = header.get('NAXIS2'  , default=None)
+        self.size_x         = header.get('NAXIS1'  , default=None)
 
         # TELESCOPE DETAILS
         self.latitude       = header.get('LAT-OBS' , default=None)

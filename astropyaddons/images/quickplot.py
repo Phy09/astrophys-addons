@@ -44,7 +44,7 @@ def quickplot(img: FITSImage, phi_lo: float=-1, phi_hi: float=3, corners: tuple[
     hi = median + std * phi_hi
 
     # Plot data in grayscale
-    plt.figure(figsize=(10, 10))
+    plt.figure(figsize=(10,10))
     plt.title(img.__repr__())
     plt.imshow(
         img.grid.grid[y_min:y_max+1, x_min:x_max+1], 
