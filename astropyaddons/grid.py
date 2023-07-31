@@ -11,9 +11,9 @@ class Grid:
         if not isinstance(array, np.ndarray): raise TypeError("'array' must be a numpy array")
         if array.ndim != 2: raise ValueError("'array' must be 2-dimensional")
 
-        #Transpose, so that the data is indexed as (x, y)
-        self.grid: np.ndarray = array.T 
-        self.size_x, self.size_y = np.shape(self.grid)
+        # Data is indexed as (y, x)
+        self.grid: np.ndarray = array
+        self.size_y, self.size_x = np.shape(self.grid)
 
     @property
     def std(self) -> float:
@@ -34,12 +34,12 @@ class EmptyGrid(Grid):
     Empty grid of pixels of a given dimension 
 
     Parameters:
-     - `size_x`: Size of empty grid in x-direction
      - `size_y`: Size of empty grid in y-direction
+     - `size_x`: Size of empty grid in x-direction
     """
-    def __init__(self, size_x, size_y):
-        if not isinstance(size_x, int): raise TypeError("size_x must be an integer")
+    def __init__(self, size_y, size_x):
         if not isinstance(size_y, int): raise TypeError("size_y must be an integer")
+        if not isinstance(size_x, int): raise TypeError("size_x must be an integer")
 
         # y then x, as it will be transposed in `Grid.__init__()`
         super().__init__(self, np.empty((size_y, size_x)))

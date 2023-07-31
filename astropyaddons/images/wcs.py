@@ -18,8 +18,8 @@ class WCS:
         # Initialize WCS object
         wcs = astropy.wcs.WCS(header.header)
 
-        # First, detect if the image is plate-solved.
-        if any(wcs.pixel_to_world_values(([0,1], [0,1]))[0] == np.array([1,2])):
+        # First, detect if the image is NOT plate-solved.
+        if all(wcs.pixel_to_world_values(([0,1], [0,1]))[0] == np.array([1,2])):
             # If it is not, we will set our WCS information to "None"
             self.wcs = None
             self.coords = None
@@ -29,14 +29,18 @@ class WCS:
         # Otherwise, create a "coordinate grid" that can be indexed via self.coords[(x, y)]
         self.wcs = wcs
         
-        coordinate_pairs = \
+        # Create an array of coordinates [(0, 0), (0, 1), (0, 2), ..., (1, 0), (1, 1), ...]
+        coordinates = \
             np.array(np.meshgrid(
-                np.arange(0, header.size_x), np.arange(0, header.size_y)
+                np.arange(0, header.size_y), np.arange(0, header.size_x)
             )).T.reshape(-1, 2)
-        wcs_pairs = self.wcs.pixel_to_world_values(coordinate_pairs)
+        wcs_coords = self.wcs.pixel_to_world_values(coordinates)
 
-        # Reshape into a (size_x, size_y) array
-        self.coords = np.array(wcs_pairs).reshape(header.size_x, header.size_y, 2)
+        # Reshape into an array indexed with `self.coords[y, x]`
+        self.coords = np.transpose(
+            np.array(wcs_coords).reshape(header.size_y, header.size_x, 2),
+            (1,0,2)
+        )
         
 
 
