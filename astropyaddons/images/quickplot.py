@@ -1,7 +1,7 @@
 from .fitsimage import FITSImage
 from matplotlib import pyplot as plt
 
-coord = tuple(int, int)
+coord = tuple[int, int]
 
 def quickplot(img: FITSImage, phi_lo: float=-1, phi_hi: float=3, corners: tuple[coord, coord]=None) -> None:
     """ 

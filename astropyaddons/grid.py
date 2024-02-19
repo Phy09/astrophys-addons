@@ -2,7 +2,9 @@ import numpy as np
 
 class Grid:
     """
-    Grid of pixels made from a 2-D numpy array, with 
+    Grid of pixels made from a 2-D numpy array. This grid contains
+    useful, readily-accessible information for scientific computation,
+    such as standard deviations or medians.
 
     Parameters:
      - `array`: A 2-D numpy array to make a Grid object from.

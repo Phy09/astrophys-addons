@@ -20,6 +20,8 @@ class FITSImage:
 
         # LOAD FITS FILE
         with fits.open(filepath) as images:
+            # A .fits file can contain many images.
+            # By default, we will load the first image.
             if id is None:
                 id = 0
                 if len(images) != 1:
@@ -34,6 +36,7 @@ class FITSImage:
         self.wcs: WCS = WCS(self.header)
 
     def __repr__(self):
+        # For debug
         return f'FITSImage of [{self.header.filter}, {self.header.datetime}, exptime {self.header.exptime}s]'
     
     def quickplot(self, phi_lo: float=-1, phi_hi: float=3) -> None:

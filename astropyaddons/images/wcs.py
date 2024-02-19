@@ -11,6 +11,9 @@ class WCS:
     Parameters:
      - `header`: `astropy.io.fits.header.Header` object to create
         a WCS from.
+
+    Can be accessed easily from `self.coords[y, x]`, and the wcs object 
+    is stored into `self.wcs`
     """
 
     def __init__(self, header: Header):
